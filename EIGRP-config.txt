@@ -1,0 +1,32 @@
+! This file contains EIGRP configuration examples.
+
+********************
+*** CLASSIC MODE ***
+********************
+
+! Create an EIGRP routing process and enable EIGRP on specified interfaces.
+
+router eigrp 12
+ network 192.168.255.0
+ 
+! The valid range for the autonomous system number is 1 to 65,535.
+! The 'network' command matches one or more local interfaces.
+! The 'network' command matches addresses that are within the defined subnet.
+! Wildcard masks can be used to target a specific host/IP address, entire network, subnet, or even a range of IP addresses.
+! If no wildcard mask is used, a classful mask is assumed.
+
+
+
+******************
+*** NAMED MODE ***
+******************
+
+! Create an EIGRP routing process and enable EIGRP on specified interfaces.
+
+router eigrp NEON
+ address-family ipv4 unicast autonomous-system 12
+  network 192.168.255.0
+  
+! The 'router eigrp' command creates an EIGRP configuration, it does not create an EIGRP routing instance by itself.
+! An EIGRP named configuration is a base configuration that is required to define address-family configurations under it that are used for routing.
+! NOTE: In named configuration, the EIGRP autonomous system number must be defined separately.
