@@ -4,6 +4,9 @@
 *** CLASSIC MODE ***
 ********************
 
+Basic EIGRP Configuration
+-------------------------
+
 ! Create an EIGRP routing process and enable EIGRP on specified interfaces.
 
 router eigrp 12
@@ -16,10 +19,50 @@ router eigrp 12
 ! If no wildcard mask is used, a classful mask is assumed.
 
 
+EIGRP Static Neighbor
+---------------------
+
+! Define an EIGRP static neighbor.
+
+router eigrp 12
+ network 192.168.255.0 
+ neighbor 192.168.255.3 GigabitEthernet0/0
+
+! The interface through which the neighbor is present and EIGRP exchanges routing updates must be specified in the 'neighbor' statement.
+! NOTE: The 'network' command is still required to enable EIGRP on the interface.
+! CAUTION: Configuring static neighbors effectively disables multicast on the interface. EIGRP will no longer process multicast packets on the interface.\
+
+
+EIGRP Passive Interface
+-----------------------
+
+! Passive interfaces will suppress EIGRP packets and not form EIGRP neighbor adjacencies.
+! The interface network will still be included in the EIGRP topology database and advertised to EIGRP neighbors.
+! There are two ways to enable passive interface: default and per interface.
+! The 'default' keyword sets all interfaces to passive.
+! Individual interfaces can be specified to override the default passive interface state by using the 'no passive-interface' command.
+
+(DEFAULT)
+
+router eigrp 12
+ network 192.168.255.0 
+ passive-interface default
+ no passive-interface GigabitEthernet0/0
+
+
+(PER INTERFACE)
+
+router eigrp 12
+ network 192.168.255.0 
+ passive-interface GigabitEthernet0/0
+ 
 
 ******************
 *** NAMED MODE ***
 ******************
+
+Basic EIGRP Configuration
+-------------------------
 
 ! Create an EIGRP routing process and enable EIGRP on specified interfaces.
 
@@ -30,3 +73,46 @@ router eigrp NEON
 ! The 'router eigrp' command creates an EIGRP configuration, it does not create an EIGRP routing instance by itself.
 ! An EIGRP named configuration is a base configuration that is required to define address-family configurations under it that are used for routing.
 ! NOTE: In named configuration, the EIGRP autonomous system number must be defined separately.
+
+
+EIGRP Static Neighbor
+---------------------
+
+! Define an EIGRP static neighbor.
+
+router eigrp NEON
+ address-family ipv4 unicast autonomous-system 12
+  neighbor 192.168.255.1 GigabitEthernet0/0
+  network 192.168.255.0
+
+! The interface through which the neighbor is present and EIGRP exchanges routing updates must be specified in the 'neighbor' statement.
+! NOTE: The 'network' command is still required to enable EIGRP on the interface.
+! CAUTION: Configuring static neighbors effectively disables multicast on the interface. EIGRP will no longer process multicast packets on the interface.
+
+
+EIGRP Passive Interface
+-----------------------
+
+! Passive interfaces will suppress EIGRP packets and not form EIGRP neighbor adjacencies.
+! The interface network will still be included in the EIGRP topology database and advertised to EIGRP neighbors.
+! There are two ways to enable passive interface: default and per interface.
+! The 'default' keyword sets all interfaces to passive.
+! Individual interfaces can be specified to override the default passive interface state by using the 'no passive-interface' command.
+
+(DEFAULT)
+
+router eigrp NEON
+ address-family ipv4 autonomous-system 12
+  network 192.168.255.0
+ af-interface default
+  passive-interface
+ af-interface GigabitEthernet0/1
+  no passive-interface
+
+(PER INTERFACE)
+
+router eigrp NEON
+ address-family ipv4 autonomous-system 12
+  network 192.168.255.0
+ af-interface GigabitEthernet0/1
+  passive-interface
