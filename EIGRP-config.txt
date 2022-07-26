@@ -56,6 +56,55 @@ router eigrp 12
  network 192.168.255.0 
  passive-interface GigabitEthernet0/0
  
+ 
+EIGRP Metric Weights
+--------------------
+
+! Tune the EIGRP metric calculation by adjusting the metric weights or K-values.
+
+ router eigrp 12
+  metric weights 0 5 4 3 2 1
+ 
+! Command syntax: metric weights tos k1 k2 k3 k4 k5
+! K-values are constants that convert an EIGRP metric vector into a scalar quantity. Valid values are 0 to 255.
+! tos is for Type of Service. This value must always be zero.
+
+
+EIGRP Timers
+------------
+
+(HELLO)
+
+interface GigabitEthernet0/0
+ ip hello-interval eigrp 12 30
+
+! Command syntax: ip hello-interval eigrp as-number seconds
+! The Hello interval is expressed in seconds. The range is from 1 to 65,535.
+
+
+(HOLD)
+
+interface GigabitEthernet0/0
+ ip hold-time eigrp 12 50
+
+! Command syntax: ip hold-time eigrp as-number seconds
+! The Hold time is expressed in seconds. The range is from 1 to 65,535.
+
+
+EIGRP Upgrade CLI
+-----------------
+
+! To convert classic mode configurations to named mode.
+
+router eigrp 12
+ eigrp upgrade-cli NEON
+
+! The command must specify an instance name for the new named mode configuration.
+! This is a one-time, one-way command.
+! After conversion, the running configuration on the device will show only named mode configurations.
+! The command must be run for every classic mode configuration (per AS).
+
+
 
 ******************
 *** NAMED MODE ***
@@ -116,3 +165,43 @@ router eigrp NEON
   network 192.168.255.0
  af-interface GigabitEthernet0/1
   passive-interface
+
+
+EIGRP Metric Weights
+--------------------
+
+! Tune the EIGRP metric calculation by adjusting the metric weights or K-values.
+
+router eigrp NEON
+ address-family ipv4 autonomous-system 12
+  metric weights 0 5 4 3 2 1 0
+
+! Command syntax: 'metric weights tos k1 k2 k3 k4 k5 k6'
+! K-values are constants that convert an EIGRP metric vector into a scalar quantity. Valid values are 0 to 255.
+! tos is for Type of Service. This value must always be zero.
+! The k6 argument is supported only in address-family configuration mode.
+
+
+EIGRP Timers
+------------
+
+(HELLO)
+
+router eigrp NEON
+ address-family ipv4 unicast autonomous-system 12
+  af-interface GigabitEthernet0/0
+   hello-interval 20
+   
+! Command syntax: ip hello-interval eigrp as-number seconds
+! The Hello interval is expressed in seconds. The range is from 1 to 65,535.
+
+
+(HOLD)
+
+router eigrp NEON
+ address-family ipv4 unicast autonomous-system 12
+  af-interface GigabitEthernet0/0
+   hold-time 40
+   
+! Command syntax: ip hold-time eigrp as-number seconds
+! The Hold time is expressed in seconds. The range is from 1 to 65,535.
