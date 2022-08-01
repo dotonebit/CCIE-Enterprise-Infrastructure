@@ -3,29 +3,38 @@
  ---------
  
  Cisco EIGRP
-  Version:
-  Opcode: 
-  Checksum:
-  Checksum Status:
+  Version: 2
+  Opcode: Hello (5)
+  Checksum: 0xf37b [correct]
+  [Checksum Status: Good]
   Flags: 0000
    ...0 = Init: Not Set
    ..0. = Conditional Receive: Not Set
    .0.. = Restart: Not Set
    0... = End Of Table: Not Set
-  Sequence:
-  Acknowledge:
-  Virtual Router ID:
-  Autonomous System:
-  Parameters
-   Type: Parameters
-   Length:
-   K1:
-   K2:
-   K3:
-   K4:
-   K5:
-   K6:
-   Hold Time:
+  Sequence: 0
+  Acknowledge: 0
+  Virtual Router ID: 0 (Address-Family)
+  Autonomous System: 12
+  Authentication MD5
+   Type: Authentication (0x0002)
+   Length: 40
+   Type: MD5 (2)
+   Length: 16
+   Key ID: 1
+   Key Sequence: 0
+   Nullpad: 0000000000000000
+   Digest: 7d1eaf77cb8a29ed62e41f6fb31a32f6
+  Parameters   
+   Type: Parameters (0x0001)
+   Length: 12
+   K1: 1
+   K2: 0
+   K3: 1
+   K4: 0
+   K5: 0
+   K6: 0
+   Hold Time: 15
    
    
  ----------
@@ -46,6 +55,21 @@
  -------
 |  ACK  |
  -------
+ 
+  Cisco EIGRP
+  Version: 2
+  Opcode: Hello (5)
+  Checksum: 0xfded [correct]
+  [Checksum Status: Good]
+  Flags: 0000
+   ...0 = Init: Not Set
+   ..0. = Conditional Receive: Not Set
+   .0.. = Restart: Not Set
+   0... = End Of Table: Not Set
+  Sequence: 0
+  Acknowledge: 1
+  Virtual Router ID: 0 (Address-Family)
+  Autonomous System: 12
  
  
  -------------
