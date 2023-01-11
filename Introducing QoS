@@ -1,0 +1,55 @@
+IP was designed to provide best-effort service for delivery of data packets and to run across virtually any network transmission media and system platform.
+Network traffic from business-critical and delay-sensitive applications must be serviced with priority and protected from other types of traffic.
+This is the job of QoS.
+Better performance from the network is achieved by managing bandwidth provisioning, delay, jitter (delay variation), and packet loss with QoS mechanisms.
+Many QoS building blocks or features operate at different parts of a network to create an end-to-end QoS system.
+Examples:
+ - traffic is classified and assigned a priority when forwarded by access switches
+ - different congestion management mechanisms for different types of traffic are used at the core
+
+
+Converged Networks
+------------------
+Converged networks carry multiple types of traffic, such as voice, video, and data, which were traditionally transported on separate and dedicated networks.
+Converged networks must balance the requirements for each different traffic types, which can compete for available resources.
+Voice and some video traffic are not tolerant of delay, jitter, or packet loss, and excessive amounts of any of these will result in a poor experience for the end users. 
+Data flows are typically more tolerant of delay, jitter, and packet loss but are very bursty in nature and will typically use as much bandwidth as possible.
+The different traffic flows on a converged network will be in competition for network resources.
+The critical, time-sensitive flows must be given priority in order to preserve the quality of this traffic.
+
+Four major problems affect quality on converged networks:
+- Bandwidth capacity:  Multiple traffic flows compete for a limited amount of bandwidth and may require more bandwidth than is available.
+- Delay: Delay is the time that it takes for a packet to reach the receiving endpoint after being transmitted by the sender.
+  There are variable delay components (processing and queueing delay) and fixed delay components (serialization and propagation delay).
+- Jitter: Jitter is the variation in latency or end-to-end delay that is experienced between when a signal is sent and when it is received.
+- Packet loss: Loss of packets is usually caused by congestion, faulty connectivity, or faulty network equipment.
+
+Different techniques are employed to manage quality issues:
+- increase the link capacity to accommodate the bandwidth requirements
+- use a queuing technique to prioritize critical traffic or enabling a compression technique to reduce the number of bits that are transmitted for packets on the link
+- a dejitter buffer can buffer packets and then play them out in a steady stream
+  This process adds to the total delay of the packet that is being delivered as an audio or video stream but allows for a smooth delivery of the real-time traffic.
+  If the amount of jitter that is experienced by the packet exceeds the dejitter buffer limits, the packet is dropped and the quality of the media stream is affected.
+ 
+
+QoS Defined
+-----------
+The ability of the network to predictably provide business applications with the service required for those applications to be successfully used on the network.
+QoS provides tools for managing network congestion, shaping network traffic, using links more efficiently, and setting traffic policies across the network.
+QoS gives priority to some sessions over other sessions.
+When queue buffers overflow, packets are dropped dterministically with minimal business impact.
+QoS policies selectively delay or drop packets when contention arises.
+QoS is not a substitute for bandwidth. 
+If the network is congested, packets will be dropped. 
+QoS allows the administrators control on how, when, and what traffic is dropped during congestion.
+
+NOTE: Quality of Experience (QoE) measures end-user perception of the network performance. 
+      QoE is not a technical metric; it is a subjective metric describing the end-user experience. 
+      You deploy QoS features to maximize QoE for the end user.
+      
+      
+QoS Policy
+----------
+
+
+Source: ENCOR - Network Switching - Introducing QoS (Cisco U.)
