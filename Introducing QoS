@@ -50,6 +50,44 @@ NOTE: Quality of Experience (QoE) measures end-user perception of the network pe
       
 QoS Policy
 ----------
+A QoS policy is a definition of the QoS levels that are assigned across a network.
+There are three basic steps involved in defining QoS policies for a network:
+  1. Identify traffic and its requirements.
+     Identifying network traffic can be accomplished by deploying classification tools on the network such as Network-Based Application Recognition (NBAR), 
+     NetFlow, or packet sniffers, and by conducting interviews with the different departments of the enterprise to identify business-critical applications.
+  2. Divide traffic into classes.
+     It is recommended that data traffic be classified into no more than four groups.
+     Mission-critical: Applications that are deemed to be the most significant for the success of the enterprise.
+     Transactional and interactive: Typically client/server models that consist of user-initiated queries that are followed by server responses, 
+     or traffic with strict user feedback requirements.
+     Best-effort: All non-critical traffic that has not been assigned to a specific data queue will utilize this class.
+     Scavenger: All data traffic that is used by non-business applications.
+  3. Define QoS policies for each class.
+     The following parameters must be defined for each traffic class:
+       - minimum or maximum bandwidth
+       - priority
+       - congestion management technique
+
+Example traffic classification:
+  Voice: Absolute priority for VoIP traffic
+  Mission-critical: Small set of locally defined applications that are critical to the business
+  Transactional and interactive: Database access, transaction services, interactive traffic, and preferred data services
+  Best-effort: Internet access and email
+  Scavenger: Nonbusiness applications such as peer-to-peer file sharing, streaming audio or video sites, or gaming sites
+  
+NOTE: Priority values typically range from 0 for low-priority traffic to 7 for high-priority traffic. 
+      These values can be carried in Layer 2 802.1Q frame headers as a class of service (CoS) value 
+      or Layer 3 IP packets as IP Precedence or as part of Differentiated Services Code Point (DSCP) value.  
 
 
+QoS Mechanisms
+--------------
+
+
+  
+  
+  
+  
+  
 Source: ENCOR - Network Switching - Introducing QoS (Cisco U.)
+ 
