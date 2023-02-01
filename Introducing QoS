@@ -82,12 +82,47 @@ NOTE: Priority values typically range from 0 for low-priority traffic to 7 for h
 
 QoS Mechanisms
 --------------
+- a set of tools and techniques to manage network resources
+- allow different types of traffic to contend inequitably for network resources
+
+Several important mechanisms are used to implement a QoS policy in an IP network:
+- Classification: all traffic is typically classified at the input interface of a QoS-aware device at the access layer and network edge
+- Marking: Packets are marked based upon classification, metering, or both for identifying the required treatment, typically performed 
+  as close to the network edge as possible
+- Congestion management: Each interface must have a queuing mechanism to prioritize the transmission of packets based on the packet marking. 
+  Congestion management is normally implemented on all output interfaces in a QoS-enabled network.
+- Congestion avoidance: Specific packets are dropped early, based on marking, in order to avoid congestion on the network. 
+  Congestion avoidance mechanisms are typically implemented on output interfaces wherever a high-speed link or set of links feeds into a lower-speed link.
+- Policing and shaping: Traffic conditioning mechanisms police traffic by dropping misbehaving traffic to maintain network integrity or shape traffic to control bursts. 
+  Policing mechanisms can be used at either input or output interfaces, while shaping mechanisms are only used on output interfaces.
+- Link efficiency: Link efficiency mechanisms improve bandwidth efficiency or the serialization delay impact of low-speed links 
+  through compression and link fragmentation and interleaving.
+  
+  
+Classification and Marking
+--------------------------
+In any network in which networked applications require differentiated levels of service, traffic must be sorted into different classes upon which QoS is applied.
+Classification allows network devices to identify traffic as belonging to a specific class with specific QoS requirements.
+After network traffic is sorted, individual packets are marked (also called colored) so that the QoS features can be applied uniformly to those packets.
+Classification is the identifying and splitting of traffic into different classes.
+Traffic can be classified by various means.
+Without classification, all packets are treated the same.
+Using packet classification, you can partition network traffic into multiple priority levels or classes of service.
+It is recommended that classification occur as close to the source of the traffic as possible.
+The concept of trust is key for deploying QoS.
+Switches and routers are generally set to not trust end devices and must specifically be configured to trust packets coming from an interface.
+Marking, also known as coloring, marks each packet as a member of a network class.
+
+CoS, Type of Service (ToS), DSCP, Class Selector, and Traffic Identifier (TID) are different terms to describe designated fields in a frame or packet header. 
+How devices treat packets in your network depends on the field values.
+
+Layer 3 packet marking with IP Precedence and DSCP is the most widely deployed marking option because Layer 3 packet markings have end-to-end significance. 
+Layer 3 markings can also be easily translated to and from Layer 2 markings.
 
 
-  
-  
-  
-  
+Policing and Shaping
+--------------------
+
   
 Source: ENCOR - Network Switching - Introducing QoS (Cisco U.)
  
