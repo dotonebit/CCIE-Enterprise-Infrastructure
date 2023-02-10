@@ -122,6 +122,33 @@ Layer 3 markings can also be easily translated to and from Layer 2 markings.
 
 Policing and Shaping
 --------------------
+Traffic policing and traffic shaping are two QoS techniques that can limit the amount of bandwidth that a specific application, user, or class of traffic 
+can use on a link.
+Policers and shapers are both rate-limiters, but they differ in how they treat excess traffic; policers drop it and shapers delay it.
+Policers perform checks for traffic violations against a configured rate. The action that they take in response is either dropping or re-marking the excess traffic. 
+Policers do not delay traffic; they only check traffic and take action if needed.
+Shapers are traffic-smoothing tools that work in cooperation with buffering mechanisms. 
+A shaper does not drop traffic, but it smooths it out so it never exceeds the configured rate.
+You can use traffic policing to control the maximum rate of traffic that is sent or received on an interface. 
+Traffic policing is often configured on interfaces at the edge of a network to limit traffic into or out of the network.
+Policer characteristics:
+- They are ideally placed as ingress tools (drop it as soon as possible so you do not waste resources).
+- They can be placed at egress to control the amount of traffic per class.
+- When traffic is exceeded, policers can either drop traffic or remark it.
+- Significant number of TCP re-sends can occur.
+- They do not introduce jitter or delay.
+Shaper characteristics:
+- They are usually deployed between enterprise network and the service provider to make sure that enterprise traffic is under contracted rate.
+- There are fewer TCP re-sends than with policers.
+- Shapers introduce delay and jitter.
+
+NOTE: You should use Call Admission Control (CAC) strategies to prevent real-time traffic from exceeding the capacity of the network. 
+Policing and shaping tools are best employed to regulate TCP-based data traffic.
+
+
+
+
+
 
   
 Source: ENCOR - Network Switching - Introducing QoS (Cisco U.)
